@@ -12,6 +12,6 @@ Disclaimer: dynamic color and themed icon is only supported on Android 12+. whil
 
 ![GitHub followers](https://img.shields.io/github/followers/TheGeekyGuy2049)
 
-![](https://imgur.com/k9jH223)
+![image](https://imgur.com/k9jH223)
 
-![](https://imgur.com/a/lgP4ct8)
+![image](https://imgur.com/a/lgP4ct8)
