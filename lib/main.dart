@@ -11,7 +11,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   static final _defaultLightColorScheme =
   ColorScheme.fromSwatch(primarySwatch: Colors.blue);
@@ -49,7 +49,7 @@ class _NavigationState extends State<Navigation> {
     });
   }
   final PageController _controller =
-  PageController(viewportFraction: 0.1, initialPage: 5);
+  PageController(viewportFraction: 0.1, initialPage: 100);
 
   @override
   Widget build(BuildContext context) {
@@ -80,47 +80,45 @@ class _NavigationState extends State<Navigation> {
           color: Colors.black,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
+            children: [
               FloatingActionButton(
-                  onPressed: (){
-                    _resetCounter();
-                    HapticFeedback.heavyImpact();
-                  },
-                  tooltip: 'Reset',
-                  child: const Icon(Icons.refresh),
-                ),
+                onPressed: (){
+                  _resetCounter();
+                  HapticFeedback.heavyImpact();
+                },
+                tooltip: 'Reset',
+                child: const Icon(Icons.refresh),
+              ),
               Text(
-                  '$_counter',
-                  style: const TextStyle(
-                    fontSize: 80,
-                    color: Colors.white,
-                  ),
+                '$_counter',
+                style: const TextStyle(
+                  fontSize: 80,
+                  color: Colors.white,
                 ),
-              SizedBox(
-                  width: 85,
-                  child: Expanded(
-                      child: GestureDetector(
+              ),
+              Container(
+                width: 90,
+                child: GestureDetector(
                         onVerticalDragDown: (dragDownDetails){
                           HapticFeedback.heavyImpact();
                           setState(() {
                             _counter++;
                           });
                         },
-                          child: PageView.builder(
-                            reverse: true,
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            controller: _controller,
-                            scrollDirection: Axis.vertical,
-                            itemBuilder: (context, index) {
-                              return Image.asset(
-                                  'assets/bead.png'
-                              );
-                            },
-                            itemCount: null,
-                          ),
-                  )
-                  ),
-                ),
+                        child: PageView.builder(
+                          reverse: true,
+                          physics: const AlwaysScrollableScrollPhysics(),
+                          controller: _controller,
+                          scrollDirection: Axis.vertical,
+                          itemBuilder: (context, index) {
+                            return Image.asset(
+                                'assets/bead.png'
+                            );
+                          },
+                          itemCount: null,
+                        ),
+                      ),
+              ),
             ],
           ),
         ),
@@ -131,19 +129,19 @@ class _NavigationState extends State<Navigation> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(
-                  child: GestureDetector(
-                    onDoubleTap: () {
-                      setState(() {
-                        Fluttertoast.showToast(
-                            msg: 'Mr. Robot is hacking your smartphone right now.'
-                        );
-                      });
-                    },
-                    child: const CircleAvatar(
-                      backgroundImage: ExactAssetImage('assets/myPhoto.jpg'),
-                      radius: 80,
-                    ),
-                  )
+                child: GestureDetector(
+                  onDoubleTap: () {
+                    setState(() {
+                      Fluttertoast.showToast(
+                          msg: 'Mr. Robot is hacking your smartphone right now.'
+                      );
+                    });
+                  },
+                  child: const CircleAvatar(
+                    backgroundImage: ExactAssetImage('assets/myPhoto.jpg'),
+                    radius: 80,
+                  ),
+                ),
               ),
               const Text(
                 'Abd El Rahman Mohamed',
@@ -205,4 +203,3 @@ class _NavigationState extends State<Navigation> {
     );
   }
 }
-
