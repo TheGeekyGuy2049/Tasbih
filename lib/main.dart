@@ -3,6 +3,8 @@ import 'package:dynamic_color/dynamic_color.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:redirect_icon/redirect_icon.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -40,17 +42,19 @@ class _NavigationState extends State<Navigation> {
   int currentPageIndex = 0;
   int _counter = 0;
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   void _resetCounter() {
     setState(() {
       _counter = 0;
     });
   }
+  void _clicked(){
+    setState(() {
+      _counter++;
+    });
+  }
+  final PageController _controller =
+  PageController(viewportFraction: 0.1, initialPage: 5);
 
   @override
   Widget build(BuildContext context) {
@@ -79,47 +83,72 @@ class _NavigationState extends State<Navigation> {
       body: <Widget>[
         Container(
           color: Colors.black,
-          alignment: Alignment.center,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
               FloatingActionButton(
-                onPressed: (){
-                  _resetCounter();
-                  HapticFeedback.heavyImpact();
-                },
-                tooltip: 'Reset',
-                child: const Icon(Icons.refresh),
-              ),
-              SizedBox(
-                child: Text(
+                  onPressed: (){
+                    _resetCounter();
+                    HapticFeedback.heavyImpact();
+                  },
+                  tooltip: 'Reset',
+                  child: const Icon(Icons.refresh),
+                ),
+              Text(
                   '$_counter',
                   style: const TextStyle(
-                    fontSize: 100,
+                    fontSize: 80,
                     color: Colors.white,
                   ),
                 ),
-              ),
-              FloatingActionButton(
-                onPressed: (){
-                  _incrementCounter();
-                  HapticFeedback.heavyImpact();
-                },
-                tooltip: 'Increment',
-                child: const Icon(Icons.add),
-              ),
+              SizedBox(
+                  width: 85,
+                  child: Expanded(
+                      child: GestureDetector(
+                        onVerticalDragDown: (DragDownDetails){
+                          HapticFeedback.heavyImpact();
+                          setState(() {
+                            _counter++;
+                          });
+                        },
+                          child: PageView.builder(
+                            reverse: true,
+                            physics: const AlwaysScrollableScrollPhysics(),
+                            controller: _controller,
+                            scrollDirection: Axis.vertical,
+                            itemBuilder: (context, index) {
+                              return Image.asset(
+                                  'assets/bead.png'
+                              );
+                            },
+                            itemCount: null,
+                          ),
+                  )
+                  ),
+                ),
             ],
           ),
         ),
         Container(
           color: Colors.black,
           alignment: Alignment.center,
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircleAvatar(
-                backgroundImage: ExactAssetImage('assets/myPhoto.jpg'),
-                radius: 80,
+              SizedBox(
+                  child: GestureDetector(
+                    onDoubleTap: () {
+                      setState(() {
+                        Fluttertoast.showToast(
+                            msg: 'Mr. Robot is hacking your smartphone right now.'
+                        );
+                      });
+                    },
+                    child: CircleAvatar(
+                      backgroundImage: ExactAssetImage('assets/myPhoto.jpg'),
+                      radius: 80,
+                    ),
+                  )
               ),
               Text(
                 'Abd El Rahman Mohamed',
