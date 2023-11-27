@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
             colorScheme: darkColorScheme ?? _defaultLightColorScheme,
             useMaterial3: true,
           ),
-          home: Navigation()
+          home: const Navigation()
       );
     }
     );
@@ -46,11 +46,6 @@ class _NavigationState extends State<Navigation> {
   void _resetCounter() {
     setState(() {
       _counter = 0;
-    });
-  }
-  void _clicked(){
-    setState(() {
-      _counter++;
     });
   }
   final PageController _controller =
@@ -105,7 +100,7 @@ class _NavigationState extends State<Navigation> {
                   width: 85,
                   child: Expanded(
                       child: GestureDetector(
-                        onVerticalDragDown: (DragDownDetails){
+                        onVerticalDragDown: (dragDownDetails){
                           HapticFeedback.heavyImpact();
                           setState(() {
                             _counter++;
@@ -144,13 +139,13 @@ class _NavigationState extends State<Navigation> {
                         );
                       });
                     },
-                    child: CircleAvatar(
+                    child: const CircleAvatar(
                       backgroundImage: ExactAssetImage('assets/myPhoto.jpg'),
                       radius: 80,
                     ),
                   )
               ),
-              Text(
+              const Text(
                 'Abd El Rahman Mohamed',
                 style: TextStyle(
                     color: Colors.white,
@@ -158,21 +153,21 @@ class _NavigationState extends State<Navigation> {
                     fontSize: 25
                 ),
               ),
-              Text(
+              const Text(
                 'Flutter Developer',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
                 ),
               ),
-              Text(
+              const Text(
                 'Follow me on:',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 12,
                 ),
               ),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
