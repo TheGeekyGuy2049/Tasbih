@@ -12,6 +12,6 @@ Disclaimer: dynamic color and themed icon is only supported on Android 12+. whil
 
 ![GitHub followers](https://img.shields.io/github/followers/TheGeekyGuy2049)
 
-![](G:\AndroidStudio\Tasbih\screenshots\Screenshot_20231127-124737_Tasbih.png)
+![](https://imgur.com/k9jH223)
 
-![](G:\AndroidStudio\Tasbih\screenshots\Screenshot_20231127-124743_Tasbih.png)
+![](https://imgur.com/a/lgP4ct8)
